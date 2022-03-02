@@ -8,7 +8,7 @@ def generate_int_data_sets(sizes):
         for i in range(size):  # creates a dataset with 0% duplicates in ascending order
             dataset.append(i)
 
-        filename = "datasets/sorted_no_duplicates_" + str(size) + ".txt"
+        filename = "int_datasets/sorted_no_duplicates_" + str(size) + ".txt"
         with open(filename, "w") as output:
             for value in dataset:
                 output.write(str(value))
@@ -27,7 +27,7 @@ def generate_int_data_sets(sizes):
         dataset[int(percentage)] = dataset[size - 1]
         dataset[size - 1] = temp
 
-        filename = "datasets/60%_sorted_no_duplicates_" + str(size) + ".txt"
+        filename = "int_datasets/60%_sorted_no_duplicates_" + str(size) + ".txt"
         with open(filename, "w") as output:
             for value in dataset:
                 output.write(str(value))
@@ -40,7 +40,7 @@ def generate_int_data_sets(sizes):
             dataset[index1] = dataset[index2]
             dataset[index2] = temp
 
-        filename = "datasets/randomized_no_duplicates_" + str(size) + ".txt"
+        filename = "int_datasets/randomized_no_duplicates_" + str(size) + ".txt"
         with open(filename, "w") as output:
             for value in dataset:
                 output.write(str(value))
@@ -65,7 +65,7 @@ def generate_int_data_sets(sizes):
             dataset[index2] = temp
 
 
-        filename = "datasets/randomized_20%_duplicates_" + str(size) + ".txt"
+        filename = "int_datasets/randomized_20%_duplicates_" + str(size) + ".txt"
         with open(filename, "w") as output:
             for value in dataset:
                 output.write(str(value))
@@ -87,7 +87,7 @@ def generate_int_data_sets(sizes):
             dataset[index1] = dataset[index2]
             dataset[index2] = temp
 
-        filename = "datasets/randomized_40%_duplicates_" + str(size) + ".txt"
+        filename = "int_datasets/randomized_40%_duplicates_" + str(size) + ".txt"
         with open(filename, "w") as output:
             for value in dataset:
                 output.write(str(value))
@@ -98,9 +98,7 @@ def generate_string_data_sets(sizes):
     for size in sizes:
         dataset = []
         curr_string = "aaaa"
-        string_size = len(curr_string)
         for i in range(size):
-            print(i, curr_string)
             dataset.append(curr_string)
 
             if ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122 and ord(curr_string[3]) + 1 > 122:
@@ -134,116 +132,13 @@ def generate_string_data_sets(sizes):
 
             curr_string = "".join(string_list)
 
+        filename = "string_datasets/sorted_no_duplicates_" + str(size) + ".txt"
+        with open(filename, "w") as output:
+            for value in dataset:
+                output.write(str(value))
+                output.write("\n")
 
 
-
-        #for i in range(size):
-        #    print(i, curr_string)
-        #    dataset.append(curr_string)
-        #    if ord(curr_string[string_size - 1]) + 1 > 122:
-        #        if string_size == 1:
-        #            string_list = list(curr_string)
-        #            string_list[string_size - 1] = 'a'
-        #            string_list.append('a')
-
-        #            curr_string = "".join(string_list)
-
-        #            string_size = len(curr_string)
-        #            continue
-        #        elif string_size == 2:
-        #            if ord(curr_string[0]) + 1 > 122:
-        #                string_list = list(curr_string)
-        #                string_list[0] = 'a'
-        #                string_list[1] = 'a'
-        #                string_list.append('a')
-
-         #               curr_string = "".join(string_list)
-
-          #              string_size = len(curr_string)
-           #             continue
-            #        else:
-             #           string_list = list(curr_string)
-              #          string_list[0] = chr(ord(curr_string[0]) + 1)
-               #         string_list[1] = 'a'
-
-                #        curr_string = "".join(string_list)
-
-                 #       string_size = len(curr_string)
-                  #      continue
-                #elif string_size == 3:
-                 #   if ord(curr_string[0]) + 1 > 122 and ord(curr_string[1]) + 1 > 122:
-                  #      string_list = list(curr_string)
-                   #     string_list[0] = 'a'
-                    #    string_list[1] = 'a'
-                     #   string_list[2] = 'a'
-                      #  string_list.append('a')
-
-                       # curr_string = "".join(string_list)
-
-                        #string_size = len(curr_string)
-                        #continue
-                    #elif ord(curr_string[1]) + 1 > 122:
-                     #   string_list = list(curr_string)
-                      #  string_list[0] = chr(ord(curr_string[0]) + 1)
-                       # string_list[1] = 'a'
-                        #string_list[2] = 'a'
-
-                        #curr_string = "".join(string_list)
-
-                        #string_size = len(curr_string)
-                        #continue
-                    #else:
-                     #   string_list = list(curr_string)
-                      #  string_list[1] = chr(ord(curr_string[1]) + 1)
-                       # string_list[2] = 'a'
-
-                        #curr_string = "".join(string_list)
-
-                        #string_size = len(curr_string)
-                        #continue
-                #elif string_size == 4:
-                 #   if ord(curr_string[0]) + 1 > 122 and ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122:
-                  #      string_list = list(curr_string)
-                   #     string_list[0] = 'a'
-                    #    string_list[1] = 'a'
-                     #   string_list[2] = 'a'
-                      #  string_list.append('a')
-
-#                        curr_string = "".join(string_list)
-
- #                       string_size = len(curr_string)
-  #                      continue
-   #                 elif ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122:
-    #                    string_list = list(curr_string)
-     #                   string_list[0] = chr(ord(curr_string[0]) + 1)
-      #                  string_list[1] = 'a'
-       #                 string_list[2] = 'a'
-
-        #                curr_string = "".join(string_list)
-
-         #               string_size = len(curr_string)
-          #              continue
-           #         elif ord(curr_string[2]) + 1 > 122:
-
-            #        else:
-             #           string_list = list(curr_string)
-              #          string_list[1] = chr(ord(curr_string[1]) + 1)
-               #         string_list[2] = 'a'
-
-                #        curr_string = "".join(string_list)
-
-                 #       string_size = len(curr_string)
-                  #      continue
-
-
-            #string_list = list(curr_string)
-            #string_list[string_size - 1] = chr(ord(curr_string[string_size - 1]) + 1)
-
-            #curr_string = "".join(string_list)
-            #curr_string[string_size - 1] = chr(ord(curr_string[string_size - 1]) + 1)
-
-
-#sizes = [1000, 5000, 10000, 25000, 50000, 100000]
-sizes = [20000]
-#generate_int_data_sets(sizes)
+sizes = [1000, 5000, 10000, 25000, 50000, 100000]
+generate_int_data_sets(sizes)
 generate_string_data_sets(sizes)
