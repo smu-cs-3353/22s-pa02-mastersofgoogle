@@ -45,6 +45,53 @@ def generate_data_set(sizes):
                 output.write(str(value))
                 output.write("\n")
 
+        #FIXME did I generate the following datasets correctly?
+
+        dataset = []
+        percentage = size / 5  # FIXME name??
+
+        for i in range(int(percentage)):
+            dataset.append(i)
+
+        for i in range(size - int(percentage)):
+            dataset.append(i)
+
+        for i in range(size):  # creates a dataset with 20% duplicates in random order
+            index1 = random.randint(0, size - 1)
+            index2 = random.randint(0, size - 1)
+            temp = dataset[index1]
+            dataset[index1] = dataset[index2]
+            dataset[index2] = temp
+
+
+        filename = "datasets/randomized_20%_duplicates_" + str(size) + ".txt"
+        with open(filename, "w") as output:
+            for value in dataset:
+                output.write(str(value))
+                output.write("\n")
+
+        dataset = []
+        percentage = size * 2 / 5  # FIXME name??
+
+        for i in range(int(percentage)):
+            dataset.append(i)
+
+        for i in range(size - int(percentage)):
+            dataset.append(i)
+
+        for i in range(size):  # creates a dataset with 40% duplicates in random order
+            index1 = random.randint(0, size - 1)
+            index2 = random.randint(0, size - 1)
+            temp = dataset[index1]
+            dataset[index1] = dataset[index2]
+            dataset[index2] = temp
+
+        filename = "datasets/randomized_40%_duplicates_" + str(size) + ".txt"
+        with open(filename, "w") as output:
+            for value in dataset:
+                output.write(str(value))
+                output.write("\n")
+
 
 
 sizes = [1000, 5000, 10000, 25000, 50000, 100000]
