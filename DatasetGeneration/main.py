@@ -1,7 +1,8 @@
 # 6 dataset sizes: 1000, 5000, 10000, 25000, 50000, 100000
 import random
+import string
 
-def generate_data_set(sizes):
+def generate_int_data_sets(sizes):
     for size in sizes:  # goes through every dataset size
         dataset = []
         for i in range(size):  # creates a dataset with 0% duplicates in ascending order
@@ -93,6 +94,156 @@ def generate_data_set(sizes):
                 output.write("\n")
 
 
+def generate_string_data_sets(sizes):
+    for size in sizes:
+        dataset = []
+        curr_string = "aaaa"
+        string_size = len(curr_string)
+        for i in range(size):
+            print(i, curr_string)
+            dataset.append(curr_string)
 
-sizes = [1000, 5000, 10000, 25000, 50000, 100000]
-generate_data_set(sizes)
+            if ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122 and ord(curr_string[3]) + 1 > 122:
+                string_list = list(curr_string)
+                string_list[0] = chr(ord(curr_string[0]) + 1)
+                string_list[1] = 'a'
+                string_list[2] = 'a'
+                string_list[3] = 'a'
+
+                curr_string = "".join(string_list)
+                continue
+            elif ord(curr_string[2]) + 1 > 122 and ord(curr_string[3]) + 1 > 122:
+                string_list = list(curr_string)
+                string_list[1] = chr(ord(curr_string[1]) + 1)
+                string_list[2] = 'a'
+                string_list[3] = 'a'
+
+                curr_string = "".join(string_list)
+                continue
+            elif ord(curr_string[3]) + 1 > 122:
+                string_list = list(curr_string)
+                string_list[2] = chr(ord(curr_string[2]) + 1)
+                string_list[3] = 'a'
+
+                curr_string = "".join(string_list)
+                continue
+
+            string_list = list(curr_string)
+
+            string_list[3] = chr(ord(curr_string[3]) + 1)
+
+            curr_string = "".join(string_list)
+
+
+
+
+        #for i in range(size):
+        #    print(i, curr_string)
+        #    dataset.append(curr_string)
+        #    if ord(curr_string[string_size - 1]) + 1 > 122:
+        #        if string_size == 1:
+        #            string_list = list(curr_string)
+        #            string_list[string_size - 1] = 'a'
+        #            string_list.append('a')
+
+        #            curr_string = "".join(string_list)
+
+        #            string_size = len(curr_string)
+        #            continue
+        #        elif string_size == 2:
+        #            if ord(curr_string[0]) + 1 > 122:
+        #                string_list = list(curr_string)
+        #                string_list[0] = 'a'
+        #                string_list[1] = 'a'
+        #                string_list.append('a')
+
+         #               curr_string = "".join(string_list)
+
+          #              string_size = len(curr_string)
+           #             continue
+            #        else:
+             #           string_list = list(curr_string)
+              #          string_list[0] = chr(ord(curr_string[0]) + 1)
+               #         string_list[1] = 'a'
+
+                #        curr_string = "".join(string_list)
+
+                 #       string_size = len(curr_string)
+                  #      continue
+                #elif string_size == 3:
+                 #   if ord(curr_string[0]) + 1 > 122 and ord(curr_string[1]) + 1 > 122:
+                  #      string_list = list(curr_string)
+                   #     string_list[0] = 'a'
+                    #    string_list[1] = 'a'
+                     #   string_list[2] = 'a'
+                      #  string_list.append('a')
+
+                       # curr_string = "".join(string_list)
+
+                        #string_size = len(curr_string)
+                        #continue
+                    #elif ord(curr_string[1]) + 1 > 122:
+                     #   string_list = list(curr_string)
+                      #  string_list[0] = chr(ord(curr_string[0]) + 1)
+                       # string_list[1] = 'a'
+                        #string_list[2] = 'a'
+
+                        #curr_string = "".join(string_list)
+
+                        #string_size = len(curr_string)
+                        #continue
+                    #else:
+                     #   string_list = list(curr_string)
+                      #  string_list[1] = chr(ord(curr_string[1]) + 1)
+                       # string_list[2] = 'a'
+
+                        #curr_string = "".join(string_list)
+
+                        #string_size = len(curr_string)
+                        #continue
+                #elif string_size == 4:
+                 #   if ord(curr_string[0]) + 1 > 122 and ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122:
+                  #      string_list = list(curr_string)
+                   #     string_list[0] = 'a'
+                    #    string_list[1] = 'a'
+                     #   string_list[2] = 'a'
+                      #  string_list.append('a')
+
+#                        curr_string = "".join(string_list)
+
+ #                       string_size = len(curr_string)
+  #                      continue
+   #                 elif ord(curr_string[1]) + 1 > 122 and ord(curr_string[2]) + 1 > 122:
+    #                    string_list = list(curr_string)
+     #                   string_list[0] = chr(ord(curr_string[0]) + 1)
+      #                  string_list[1] = 'a'
+       #                 string_list[2] = 'a'
+
+        #                curr_string = "".join(string_list)
+
+         #               string_size = len(curr_string)
+          #              continue
+           #         elif ord(curr_string[2]) + 1 > 122:
+
+            #        else:
+             #           string_list = list(curr_string)
+              #          string_list[1] = chr(ord(curr_string[1]) + 1)
+               #         string_list[2] = 'a'
+
+                #        curr_string = "".join(string_list)
+
+                 #       string_size = len(curr_string)
+                  #      continue
+
+
+            #string_list = list(curr_string)
+            #string_list[string_size - 1] = chr(ord(curr_string[string_size - 1]) + 1)
+
+            #curr_string = "".join(string_list)
+            #curr_string[string_size - 1] = chr(ord(curr_string[string_size - 1]) + 1)
+
+
+#sizes = [1000, 5000, 10000, 25000, 50000, 100000]
+sizes = [20000]
+#generate_int_data_sets(sizes)
+generate_string_data_sets(sizes)
