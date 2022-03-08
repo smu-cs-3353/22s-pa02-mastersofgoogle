@@ -13,7 +13,25 @@ int main() {
     theSorter.insertionSort(tester, 10);
 
     for (int i = 0; i < 10; i++) {
-        cout << tester[i] << endl;
+        cout << tester[i] << " ";
     }
+    cout << endl;
 
+    int tester2[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+
+    theSorter.randomizedQuickSort(tester2, 0, 9);
+
+    for (int i = 0; i < 10; i++) {
+        cout << tester2[i] << " ";
+    }
+    cout << endl;
+
+    int tester3[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+
+    theSorter.mergeSort(tester3, 0, 9);
+
+    for (int i = 0; i < 10; i++) {
+        cout << tester3[i] << " ";
+    }
+    cout << endl;
 }
