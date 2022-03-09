@@ -2,68 +2,81 @@
 // Created by mikec_g1kgiu8 on 3/2/2022.
 //
 #include <iostream>
+#include <random>
 #include "SortingAlgorithms.h"
 
 using namespace std;
 
 int main() {
-    int tester[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
     SortingAlgorithms theSorter;
 
-    theSorter.insertionSort(tester, 0, 10);
+    int tester1[1000];
+    int tester2[1000];
+    int tester3[1000];
+    int tester4[1000];
+    int tester5[1000];
+    int tester6[1000];
 
-    for (int i = 0; i < 10; i++) {
-        cout << tester[i] << " ";
+    cout << "Unsorted" << endl;
+    for (int i = 0; i < 1000; i++) {
+        int randomNum = rand() % 1000;
+        tester1[i] = randomNum;
+        tester2[i] = randomNum;
+        tester3[i] = randomNum;
+        tester4[i] = randomNum;
+        tester5[i] = randomNum;
+        tester6[i] = randomNum;
+
+        cout << randomNum << " ";
     }
     cout << endl;
 
-    int tester2[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+    theSorter.insertionSort(tester1, 0, 999);
+    cout << "Insertion Sort" << endl;
 
-    theSorter.randomizedQuickSort(tester2, 0, 9);
+    for (int i = 0; i < 1000; i++) {
+        cout << tester1[i] << " ";
+    }
+    cout << endl;
 
-    for (int i = 0; i < 10; i++) {
+    theSorter.randomizedQuickSort(tester2, 0, 999);
+    cout << "Quick Sort" << endl;
+
+    for (int i = 0; i < 1000; i++) {
         cout << tester2[i] << " ";
     }
     cout << endl;
 
-    int tester3[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+    theSorter.mergeSort(tester3, 0, 999);
+    cout << "Merge Sort" << endl;
 
-    theSorter.mergeSort(tester3, 0, 9);
-
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1000; i++) {
         cout << tester3[i] << " ";
     }
     cout << endl;
 
-    int tester4[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+    theSorter.shellSort(tester4, 1000);
+    cout << "Shell Sort" << endl;
 
-    theSorter.shellSort(tester4, 10);
-
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1000; i++) {
         cout << tester4[i] << " ";
     }
     cout << endl;
 
-    int tester5[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1, 77, 8989, 1, 2, 3, 4, 5, 6, 7};
+    theSorter.introSort(tester5, tester5, tester5 + 999);
+    cout << "Intro Sort" << endl;
 
-    theSorter.introSort(tester5, 0, 19);
-//    cout << sizeof(tester5) / sizeof(tester5[0]) << endl;
-//    int maxdepth = log(19) * 2;
-//    introsort(tester5, tester5, tester5 + 19 - 1, maxdepth);
-
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < 1000; i++) {
         cout << tester5[i] << " ";
     }
     cout << endl;
 
-    int tester6[] = {0, 55, 6, 3, 45, 99, 992, 2, 3, 1};
+    theSorter.timSort(tester6, 1000);
+    cout << "Tim Sort" << endl;
 
-    theSorter.timSort(tester6, 10);
-
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1000; i++) {
         cout << tester6[i] << " ";
     }
     cout << endl;
-
 
 }

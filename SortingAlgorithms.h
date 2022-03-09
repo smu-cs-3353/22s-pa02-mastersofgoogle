@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <iostream>
 
+using namespace std;
+
 class SortingAlgorithms {
     private:
         //Partition and Swap functions for Randomized QuickSort and IntroSort
@@ -19,21 +21,15 @@ class SortingAlgorithms {
         void merge(int[], int, int, int);
 
         //Private, recursive IntroSort function
-        void introSort(int[], int, int, int);
-
-        //HeapSort implementation for IntroSort
-        void heapify(int[], int, int);
-        void heapSort(int[], int);
+        void introSort(int[], int*, int*, int);
 
     public: //FIXME temporarily public (?)
         void insertionSort(int[], int, int);
         void randomizedQuickSort(int[], int, int);
         void mergeSort(int[], int, int);
         void shellSort(int[], int);
-        void introSort(int[], int, int);
+        void introSort(int[], int*, int*);
         void timSort(int[], int);
-
-    //public:
 
 };
 

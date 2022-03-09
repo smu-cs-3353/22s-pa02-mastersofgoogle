@@ -8,13 +8,13 @@
 void SortingAlgorithms::insertionSort(int theArray[], int low, int high) {
     for (int i = low + 1; i <= high; i++) {
         int key = theArray[i];
-        int j = i;
+        int j = i - 1;
 
-        while (j > low && theArray[j - 1] > key) {
-            theArray[j] = theArray[j - 1];
+        while (j >= low && theArray[j] > key) {
+            theArray[j + 1] = theArray[j];
             j -= 1;
         }
-        theArray[j] = key;
+        theArray[j + 1] = key;
     }
 }
 
@@ -141,62 +141,31 @@ void SortingAlgorithms::shellSort(int theArray[], int size) {
 }
 
 //Inspired by code found at: https://www.techiedelight.com/introsort-algorithm/
-void SortingAlgorithms::introSort(int theArray[], int beginning, int end) {
+void SortingAlgorithms::introSort(int theArray[], int* beginning, int* end) {
     int depthLimit = 2 * log(end - beginning);
 
     introSort(theArray, beginning, end, depthLimit);
 }
 
-void SortingAlgorithms::introSort(int theArray[], int beginning, int end, int depthLimit) {
+void SortingAlgorithms::introSort(int theArray[], int* beginning, int* end, int depthLimit) {
     int size = end - beginning;
 
     if (size < 16) {
-        insertionSort(theArray, beginning, end);
+        insertionSort(theArray, beginning - theArray, end - theArray);
         return;
     } else if (depthLimit == 0) {
-        heapSort(theArray, size);
+        make_heap(beginning, end + 1);
+        sort_heap(beginning, end + 1);
         return;
     } else {
-        int partitionIndex = partition(theArray, beginning, end);
+
+        int* partitionIndex = theArray + partition(theArray, beginning - theArray, end - theArray); //introSortPartition(theArray, beginning - theArray, end - theArray);
 
         introSort(theArray, beginning, partitionIndex - 1, depthLimit - 1);
         introSort(theArray, partitionIndex + 1, end, depthLimit - 1);
 
         return;
     }
-}
-
-//Inspired by code found at: https://www.geeksforgeeks.org/heap-sort/#:~:text=Heap%20sort%20is%20a%20comparison,process%20for%20the%20remaining%20elements.
-void SortingAlgorithms::heapSort(int theArray[], int size) {
-    for (int i = size / 2 - 1; i >= 0; i--) {
-        heapify(theArray, size, i);
-    }
-
-    for (int i = size - 1; i > 0; i--) {
-        swap(&theArray[0], &theArray[i]);
-        heapify(theArray, i, 0);
-    }
-}
-
-void SortingAlgorithms::heapify(int theArray[], int size, int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < size && theArray[left] > theArray[largest]) {
-        largest = left;
-    }
-
-    if (right < size && theArray[right] > theArray[largest]) {
-        largest = right;
-    }
-
-    if (largest != i) {
-        swap(&theArray[i], &theArray[largest]);
-
-        heapify(theArray, size, largest);
-    }
-
 }
 
 //Inspired by code found at: https://www.geeksforgeeks.org/timsort/
@@ -217,4 +186,7 @@ void SortingAlgorithms::timSort(int theArray[], int size) {
         }
     }
 }
+
+
+
 
