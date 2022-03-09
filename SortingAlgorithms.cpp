@@ -4,17 +4,17 @@
 
 #include "SortingAlgorithms.h"
 
-//Inspired by code found at: https://www.geeksforgeeks.org/insertion-sort/
-void SortingAlgorithms::insertionSort(int theArray[], int size) {
-    for (int i = 1; i < size; i++) {
+//Inspired by code found at: https://www.geeksforgeeks.org/insertion-sort/ and https://www.techiedelight.com/introsort-algorithm/
+void SortingAlgorithms::insertionSort(int theArray[], int low, int high) {
+    for (int i = low + 1; i <= high; i++) {
         int key = theArray[i];
-        int j = i - 1;
+        int j = i;
 
-        while (j >= 0 && theArray[j] > key) {
-            theArray[j + 1] = theArray[j];
-            j = j - 1;
+        while (j > low && theArray[j - 1] > key) {
+            theArray[j] = theArray[j - 1];
+            j -= 1;
         }
-        theArray[j + 1] = key;
+        theArray[j] = key;
     }
 }
 
@@ -113,5 +113,108 @@ void SortingAlgorithms::merge(int theArray[], int left, int middle, int right) {
 
     delete[] leftArray;
     delete[] rightArray;
+}
+
+//Inspired by pseudo-code found at: https://www.tutorialspoint.com/data_structures_algorithms/shell_sort_algorithm.htm
+void SortingAlgorithms::shellSort(int theArray[], int size) {
+    int interval = 1;
+
+    while (interval < size / 3) {
+        interval = interval * 3 + 1;
+    }
+
+    while (interval > 0) {
+        for (int i = interval; i < size; i++) {
+            int value = theArray[i];
+            int j = i;
+
+            while (j >= interval && theArray[j - interval] > value) {
+                theArray[j] = theArray[j - interval];
+                j = j - interval;
+            }
+
+            theArray[j] = value;
+        }
+
+       interval = (interval - 1) / 3;
+    }
+}
+
+//Inspired by code found at: https://www.techiedelight.com/introsort-algorithm/
+void SortingAlgorithms::introSort(int theArray[], int beginning, int end) {
+    int depthLimit = 2 * log(end - beginning);
+
+    introSort(theArray, beginning, end, depthLimit);
+}
+
+void SortingAlgorithms::introSort(int theArray[], int beginning, int end, int depthLimit) {
+    int size = end - beginning;
+
+    if (size < 16) {
+        insertionSort(theArray, beginning, end);
+        return;
+    } else if (depthLimit == 0) {
+        heapSort(theArray, size);
+        return;
+    } else {
+        int partitionIndex = partition(theArray, beginning, end);
+
+        introSort(theArray, beginning, partitionIndex - 1, depthLimit - 1);
+        introSort(theArray, partitionIndex + 1, end, depthLimit - 1);
+
+        return;
+    }
+}
+
+//Inspired by code found at: https://www.geeksforgeeks.org/heap-sort/#:~:text=Heap%20sort%20is%20a%20comparison,process%20for%20the%20remaining%20elements.
+void SortingAlgorithms::heapSort(int theArray[], int size) {
+    for (int i = size / 2 - 1; i >= 0; i--) {
+        heapify(theArray, size, i);
+    }
+
+    for (int i = size - 1; i > 0; i--) {
+        swap(&theArray[0], &theArray[i]);
+        heapify(theArray, i, 0);
+    }
+}
+
+void SortingAlgorithms::heapify(int theArray[], int size, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left < size && theArray[left] > theArray[largest]) {
+        largest = left;
+    }
+
+    if (right < size && theArray[right] > theArray[largest]) {
+        largest = right;
+    }
+
+    if (largest != i) {
+        swap(&theArray[i], &theArray[largest]);
+
+        heapify(theArray, size, largest);
+    }
+
+}
+
+//Inspired by code found at: https://www.geeksforgeeks.org/timsort/
+void SortingAlgorithms::timSort(int theArray[], int size) {
+    int run = 32;
+    for (int i = 0; i < size; i += run) { //FIXME can change 32 to 64 (or a larger power of 2)
+        insertionSort(theArray, i, std::min((i + run - 1), (size - 1))); //FIXME change 32 here too
+    }
+
+    for (int i = run; i < size; i *= 2) {
+        for (int left = 0; left < size; left += i * 2) {
+            int middle = left + i - 1;
+            int right = std::min((left + 2 * i - 1), (size - 1));
+
+            if (middle < right) {
+                merge(theArray, left, middle, right);
+            }
+        }
+    }
 }
 
