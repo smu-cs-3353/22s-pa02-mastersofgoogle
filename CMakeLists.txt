@@ -4,4 +4,4 @@ project(22s_pa02_mastersofgoogle)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(22s_pa02_mastersofgoogle
-        main.cpp SortingAlgorithms.h SortingAlgorithms.cpp)
+        main.cpp SortingAlgorithms.h)
