@@ -21,3 +21,13 @@ To do this, I needed to construct integer-based and string-based datasets. The f
 Each type of dataset was created at six different sizes for both strings and integers (so a total of 60 datasets were created). The dataset sizes I chose were 1000, 5000, 10000, 25000, 50000, and 100000 elements.  
 
 After generating the datasets and implementing the sorting algorithms, I needed to run each dataset through each of the six sorting algorithms and collect timing data using std::chrono. This data was then outputted to a csv file for data analysis.
+
+## Building and Executing
+To generate the datasets from the terminal, simply navigate to the DatasetGeneration folder and use the command:  
+**python3 main.py**  
+
+To build the sorting algorithms code from the terminal, simply navigate to the src folder and use the command:  
+**g++ main.cpp -o output**  
+(Note that after the -o, you can name the executable whatever you want). To run the sorting algorithms, simply type the command:  
+**./output.out**  
+(Again, note that output should be replaced with the name of your executable). No command line arguments are required for this program, as all file paths are already included in the source code.
