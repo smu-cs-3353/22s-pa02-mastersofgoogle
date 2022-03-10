@@ -8,6 +8,8 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -32,7 +34,152 @@ class SortingAlgorithms {
         void introSort(T[], T*, T*);
         void timSort(T[], int);
 
+        void sortDatasets(const string&);
+
 };
+
+template <typename T>
+void SortingAlgorithms<T>::sortDatasets(const string& filePath) {
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+
+    ofstream output;
+    if (filePath.find("string") < filePath.length()) {
+        string outputFile = filePath + "_string_output.csv";
+        outputFile.erase(outputFile.begin(), outputFile.begin() + 37);
+        output.open("../output/" + outputFile, ios::out);
+        cout << outputFile << endl;
+    } else {
+        string outputFile = filePath + "_int_output.csv";
+        outputFile.erase(outputFile.begin(), outputFile.begin() + 34);
+        output.open("../output/" + outputFile, ios::out);
+    }
+
+    if (!output.is_open()) {
+        cout << "Could not open output file" << endl;
+        return;
+    }
+
+    for (int i = 0; i < 36; i++) {
+        ifstream input;
+        int size;
+        if (i < 6) {
+            if (i == 0) {
+                cout << "Size 1000:" << endl;
+                output << "Size 1000:" << endl;
+            }
+            string textFile = filePath + "_1000.txt";
+            input.open(textFile, ios::in);
+            size = 1000;
+        } else if (i < 12) {
+            if (i == 6) {
+                cout << "Size 5000:" << endl;
+                output << "Size 5000:" << endl;
+            }
+            string textFile = filePath + "_5000.txt";
+            input.open(textFile, ios::in);
+            size = 5000;
+        } else if (i < 18) {
+            if (i == 12) {
+                cout << "Size 10000:" << endl;
+                output << "Size 10000:" << endl;
+            }
+            string textFile = filePath + "_10000.txt";
+            input.open(textFile, ios::in);
+            size = 10000;
+        } else if (i < 24) {
+            if (i == 18) {
+                cout << "Size 25000:" << endl;
+                output << "Size 25000:" << endl;
+            }
+            string textFile = filePath + "_25000.txt";
+            input.open(textFile, ios::in);
+            size = 25000;
+        } else if (i < 30) {
+            if (i == 24) {
+                cout << "Size 50000:" << endl;
+                output << "Size 50000:" << endl;
+            }
+            string textFile = filePath + "_50000.txt";
+            input.open(textFile, ios::in);
+            size = 50000;
+        } else {
+            if (i == 30) {
+                cout << "Size 100000" << endl;
+                output << "Size 100000:" << endl;
+            }
+            string textFile = filePath + "_100000.txt";
+            input.open(textFile, ios::in);
+            size = 100000;
+        }
+        T words[size];
+
+        if (!input.is_open()) {
+            cout << "Could not open file: " << filePath << endl;
+            return;
+        }
+
+        for (int j = 0; j < size; j++) {
+            input >> words[j];
+//            cout << words[j] << " ";
+        }
+//        cout << endl;
+
+        if (i % 6 == 0) {
+            start = std::chrono::high_resolution_clock::now();
+            insertionSort(words, 0, size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Insertion Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Insertion Sort Duration: ," << time_in_seconds.count() << endl;
+        } else if (i % 6 == 1) {
+            start = std::chrono::high_resolution_clock::now();
+            randomizedQuickSort(words, 0, size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Quick Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Quick Sort Duration: ," << time_in_seconds.count() << endl;
+        } else if (i % 6 == 2) {
+            start = std::chrono::high_resolution_clock::now();
+            mergeSort(words, 0, size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Merge Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Merge Sort Duration: ," << time_in_seconds.count() << endl;
+        } else if (i % 6 == 3) {
+            start = std::chrono::high_resolution_clock::now();
+            shellSort(words, size);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Shell Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Shell Sort Duration: ," << time_in_seconds.count() << endl;
+        } else if (i % 6 == 4) {
+            start = std::chrono::high_resolution_clock::now();
+            introSort(words, words, words + size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Intro Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Intro Sort Duration: ," << time_in_seconds.count() << endl;
+        } else {
+            start = std::chrono::high_resolution_clock::now();
+            timSort(words, size);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start;
+            cout << fixed << "Tim Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Tim Sort Duration: ," << time_in_seconds.count() << endl;
+            cout << endl;
+            output << endl;
+        }
+        input.close();
+    }
+    output.close();
+
+}
 
 //Inspired by code found at: https://www.geeksforgeeks.org/insertion-sort/ and https://www.techiedelight.com/introsort-algorithm/
 template <typename T>
@@ -226,11 +373,6 @@ void SortingAlgorithms<T>::timSort(T theArray[], int size) {
         }
     }
 }
-
-
-
-
-
 
 
 #endif //INC_22S_PA02_MASTERSOFGOOGLE_SORTINGALGORITHMS_H
