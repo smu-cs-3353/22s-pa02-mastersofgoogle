@@ -8,6 +8,8 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -24,7 +26,7 @@ class SortingAlgorithms {
         //Private, recursive IntroSort function
         void introSort(T[], T*, T*, int);
 
-    public: //FIXME temporarily public (?)
+        //Sorting Algorithms
         void insertionSort(T[], int, int);
         void randomizedQuickSort(T[], int, int);
         void mergeSort(T[], int, int);
@@ -32,7 +34,162 @@ class SortingAlgorithms {
         void introSort(T[], T*, T*);
         void timSort(T[], int);
 
+    public:
+        //Function that calls all sorting algorithms on the provided path
+        void sortDatasets(const string&);
+
 };
+
+template <typename T>
+void SortingAlgorithms<T>::sortDatasets(const string& filePath) {
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end; //variables to count the time
+
+    ofstream output;
+    if (filePath.find("string") < filePath.length()) { //if filePath is for a string dataset
+        string outputFile = filePath + "_string_output.csv"; //adds the output file ending
+        outputFile.erase(outputFile.begin(), outputFile.begin() + 37); //removes ../DatasetGeneration/string_datasets/
+
+        output.open("../output/" + outputFile, ios::out); //creates output file in output folder
+    } else { //if filePath is for an int dataset
+        string outputFile = filePath + "_int_output.csv"; //adds the output file ending
+        outputFile.erase(outputFile.begin(), outputFile.begin() + 34); //removes ../DatasetGeneration/int_datasets/
+
+        output.open("../output/" + outputFile, ios::out); //creates output file in output folder
+    }
+
+    if (!output.is_open()) { //if the output file does not open
+        cout << "Could not open output file" << endl;
+        return;
+    }
+
+    //the following loop iterates through each filePath dataset size and runs it through each sorting algorithm
+    //Ex: If filePath is ../DatasetGeneration/int_datasets/randomized_no_duplicates, then it first runs
+    // ../DatasetGeneration/int_datasets/randomized_no_duplicates_1000.txt through Insertion Sort, then
+    // ../DatasetGeneration/int_datasets/randomized_no_duplicates through Quick Sort, etc.
+    for (int i = 0; i < 36; i++) {
+        ifstream input; //input file
+        int size; //size of the dataset
+        if (i < 6) { //size 1000 dataset for each of the 6 algorithms
+            if (i == 0) { //for the first instance, print a header
+                cout << "Size 1000:" << endl;
+                output << "Size 1000:" << endl;
+            }
+            string textFile = filePath + "_1000.txt";
+            input.open(textFile, ios::in); //opens the size 1000 dataset
+            size = 1000;
+        } else if (i < 12) { //size 5000 dataset for each of the 6 algorithms
+            if (i == 6) { //for the first instance, print a header
+                cout << "Size 5000:" << endl;
+                output << "Size 5000:" << endl;
+            }
+            string textFile = filePath + "_5000.txt";
+            input.open(textFile, ios::in); //opens the size 5000 dataset
+            size = 5000;
+        } else if (i < 18) { //size 10000 dataset for each of the 6 algorithms
+            if (i == 12) { //for the first instance, print a header
+                cout << "Size 10000:" << endl;
+                output << "Size 10000:" << endl;
+            }
+            string textFile = filePath + "_10000.txt";
+            input.open(textFile, ios::in); //opens the size 10000 dataset
+            size = 10000;
+        } else if (i < 24) { //size 25000 dataset for each of the 6 algorithms
+            if (i == 18) { //for the first instance, print a header
+                cout << "Size 25000:" << endl;
+                output << "Size 25000:" << endl;
+            }
+            string textFile = filePath + "_25000.txt";
+            input.open(textFile, ios::in); //opens the size 25000 dataset
+            size = 25000;
+        } else if (i < 30) { //size 50000 dataset for each of the 6 algorithms
+            if (i == 24) { //for the first instance, print a header
+                cout << "Size 50000:" << endl;
+                output << "Size 50000:" << endl;
+            }
+            string textFile = filePath + "_50000.txt";
+            input.open(textFile, ios::in); //opens the size 50000 dataset
+            size = 50000;
+        } else { //size 100000 dataset for each of the 6 algorithms
+            if (i == 30) { //for the first instance, print a header
+                cout << "Size 100000" << endl;
+                output << "Size 100000:" << endl;
+            }
+            string textFile = filePath + "_100000.txt";
+            input.open(textFile, ios::in); //opens the size 100000 dataset
+            size = 100000;
+        }
+        T words[size]; //creates the array of the correct size
+
+        if (!input.is_open()) { //if the input file could not be opened
+            cout << "Could not open file: " << filePath << endl;
+            return;
+        }
+
+        for (int j = 0; j < size; j++) { //input the data
+            input >> words[j];
+        }
+
+        if (i % 6 == 0) { //calls Insertion Sort first for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            insertionSort(words, 0, size - 1); //Insertion Sort call
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Insertion Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Insertion Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+
+        } else if (i % 6 == 1) { //calls Quick Sort second for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            randomizedQuickSort(words, 0, size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Quick Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Quick Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+
+        } else if (i % 6 == 2) { //calls Merge Sort third for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            mergeSort(words, 0, size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Merge Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Merge Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+
+        } else if (i % 6 == 3) { //calls Shell Sort fourth for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            shellSort(words, size);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Shell Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Shell Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+
+        } else if (i % 6 == 4) { //calls Intro Sort fifth for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            introSort(words, words, words + size - 1);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Intro Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Intro Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+
+        } else { //calls Tim Sort sixth for each dataset
+            start = std::chrono::high_resolution_clock::now();
+            timSort(words, size);
+            end = std::chrono::high_resolution_clock::now();
+
+            std::chrono::duration<double> time_in_seconds = end - start; //calculates the time it took for the algorithm to sort the dataset
+            cout << fixed << "Tim Sort Duration: " << time_in_seconds.count() << endl;
+            output << fixed << "Tim Sort Duration: ," << time_in_seconds.count() << endl; //adds the algorithm's time to the csv file
+            cout << endl;
+            output << endl;
+        }
+        input.close(); //closes the input file
+    }
+    output.close(); //closes the output file
+
+}
 
 //Inspired by code found at: https://www.geeksforgeeks.org/insertion-sort/ and https://www.techiedelight.com/introsort-algorithm/
 template <typename T>
@@ -226,11 +383,6 @@ void SortingAlgorithms<T>::timSort(T theArray[], int size) {
         }
     }
 }
-
-
-
-
-
 
 
 #endif //INC_22S_PA02_MASTERSOFGOOGLE_SORTINGALGORITHMS_H
