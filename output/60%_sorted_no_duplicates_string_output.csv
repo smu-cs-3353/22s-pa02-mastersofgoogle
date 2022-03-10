@@ -1,48 +1,48 @@
 Size 1000:
-Insertion Sort Duration: ,0.001458
-Quick Sort Duration: ,0.000692
-Merge Sort Duration: ,0.000869
-Shell Sort Duration: ,0.000470
-Intro Sort Duration: ,0.000534
-Tim Sort Duration: ,0.000585
+Insertion Sort Duration: ,0.001567
+Quick Sort Duration: ,0.000689
+Merge Sort Duration: ,0.000936
+Shell Sort Duration: ,0.000465
+Intro Sort Duration: ,0.000568
+Tim Sort Duration: ,0.000567
 
 Size 5000:
-Insertion Sort Duration: ,0.036131
-Quick Sort Duration: ,0.004857
-Merge Sort Duration: ,0.005863
-Shell Sort Duration: ,0.003111
-Intro Sort Duration: ,0.003631
-Tim Sort Duration: ,0.003479
+Insertion Sort Duration: ,0.036567
+Quick Sort Duration: ,0.004919
+Merge Sort Duration: ,0.005673
+Shell Sort Duration: ,0.003420
+Intro Sort Duration: ,0.003802
+Tim Sort Duration: ,0.003665
 
 Size 10000:
-Insertion Sort Duration: ,0.129108
-Quick Sort Duration: ,0.005017
-Merge Sort Duration: ,0.006381
-Shell Sort Duration: ,0.004313
-Intro Sort Duration: ,0.004611
-Tim Sort Duration: ,0.004292
+Insertion Sort Duration: ,0.096224
+Quick Sort Duration: ,0.004899
+Merge Sort Duration: ,0.007038
+Shell Sort Duration: ,0.005074
+Intro Sort Duration: ,0.006524
+Tim Sort Duration: ,0.007041
 
 Size 25000:
-Insertion Sort Duration: ,0.607591
-Quick Sort Duration: ,0.019985
-Merge Sort Duration: ,0.033567
-Shell Sort Duration: ,0.022225
-Intro Sort Duration: ,0.027166
-Tim Sort Duration: ,0.023310
+Insertion Sort Duration: ,0.601140
+Quick Sort Duration: ,0.013793
+Merge Sort Duration: ,0.016545
+Shell Sort Duration: ,0.011308
+Intro Sort Duration: ,0.013756
+Tim Sort Duration: ,0.011239
 
 Size 50000:
-Insertion Sort Duration: ,2.677323
-Quick Sort Duration: ,0.047462
-Merge Sort Duration: ,0.068237
-Shell Sort Duration: ,0.024961
-Intro Sort Duration: ,0.025356
-Tim Sort Duration: ,0.025027
+Insertion Sort Duration: ,2.580554
+Quick Sort Duration: ,0.054429
+Merge Sort Duration: ,0.069231
+Shell Sort Duration: ,0.050072
+Intro Sort Duration: ,0.050357
+Tim Sort Duration: ,0.047339
 
 Size 100000:
-Insertion Sort Duration: ,9.696499
-Quick Sort Duration: ,0.117789
-Merge Sort Duration: ,0.150929
-Shell Sort Duration: ,0.058742
-Intro Sort Duration: ,0.052713
-Tim Sort Duration: ,0.058887
+Insertion Sort Duration: ,10.991335
+Quick Sort Duration: ,0.060487
+Merge Sort Duration: ,0.131917
+Shell Sort Duration: ,0.096119
+Intro Sort Duration: ,0.107573
+Tim Sort Duration: ,0.056115
 
