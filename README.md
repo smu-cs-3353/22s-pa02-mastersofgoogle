@@ -27,7 +27,8 @@ To generate the datasets from the terminal, simply navigate to the DatasetGenera
 **python3 main.py**  
 
 To build the sorting algorithms code from the terminal, simply navigate to the src folder and use the command:  
-**g++ main.cpp -o output**  
+**g++ main.cpp SortingAlgorithms.h -o output**
+
 (Note that after the -o, you can name the executable whatever you want). To run the sorting algorithms, simply type the command:  
-**./output.out**  
+**./output**  
 (Again, note that output should be replaced with the name of your executable). No command line arguments are required for this program, as all file paths are already included in the source code.
