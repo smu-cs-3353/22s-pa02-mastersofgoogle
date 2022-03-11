@@ -35,9 +35,18 @@ To build the sorting algorithms code from the terminal, simply navigate to the s
 
 ## Report Questions
 1) How did you generate the various data sets?
+      - I generated the various data sets in Python. 
+      - For the integer data sets, if there were no duplicates, then I simply iterated through a for loop the size of the data set, adding 0 - size - 1 to the data set. If any part of the data set needed to be randomized, then I used another for loop the size of the data set to generate random indices in the approriate range and swap the values at those indices. If any part of the array had duplicates, then I would use two for loops, both starting from i = 0, to generate the data (1 the size of the percent of the data set that needed to be duplicated, the other the remaining values needed for the data set).
+      - For the string data sets, I generated 4 character strings that only had lowercase letters. I incremented each string by one letter as needed to form new strings, resetting the letters after they reached 'z' (Ex: 'aaaa' incremented to 'aaab', and 'aazz' incremented to 'abaa'). Like above, if any part of the data set needed to be randomized, then I used a for loop to generate random indices in the appropriate range and swap the values at those indices. If values needed to be repeated, then I would call my function that generated strings twice, once with size being the percent of values that needed to be duplicated, and once with the remaining size needed to be generated to complete the data set. Both function calls would start from 'aaaa'. (Ex: If 20% of values in a size 100 data set needed to be duplicated, then I would first generate 20 values starting from 'aaaa', then generate 80 more values starting from 'aaaa').
 2) How does the performance of the various sorting algorithms differ between randomized data and pre-sorted data? Does this change with integers vs strings?
+      -
 3) How do the algorithms perform as the datasets grow very large?
+      -
 4) Does the performance of the sorting algorithms match published upper bounds?
+      -
 5) How does the performance of the algorithms change as duplicates are introduced?
+      -
 6) How does the performance of the algorithms change when the input is mostly sorted?
+      -
 7) Which algorithm is the best?
+      -
