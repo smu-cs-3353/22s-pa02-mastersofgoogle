@@ -32,3 +32,12 @@ To build the sorting algorithms code from the terminal, simply navigate to the s
 (Note that after the -o, you can name the executable whatever you want). To run the sorting algorithms, simply type the command:  
 **./output**  
 (Again, note that output should be replaced with the name of your executable). No command line arguments are required for this program, as all file paths are already included in the source code.
+
+## Report Questions
+1) How did you generate the various data sets?
+2) How does the performance of the various sorting algorithms differ between randomized data and pre-sorted data? Does this change with integers vs strings?
+3) How do the algorithms perform as the datasets grow very large?
+4) Does the performance of the sorting algorithms match published upper bounds?
+5) How does the performance of the algorithms change as duplicates are introduced?
+6) How does the performance of the algorithms change when the input is mostly sorted?
+7) Which algorithm is the best?
