@@ -1,0 +1,48 @@
+Size 1000:
+Insertion Sort Duration: ,0.002999
+Quick Sort Duration: ,0.000288
+Merge Sort Duration: ,0.000458
+Shell Sort Duration: ,0.000365
+Intro Sort Duration: ,0.000271
+Tim Sort Duration: ,0.000326
+
+Size 5000:
+Insertion Sort Duration: ,0.078134
+Quick Sort Duration: ,0.001743
+Merge Sort Duration: ,0.002310
+Shell Sort Duration: ,0.002360
+Intro Sort Duration: ,0.001560
+Tim Sort Duration: ,0.001810
+
+Size 10000:
+Insertion Sort Duration: ,0.304084
+Quick Sort Duration: ,0.003690
+Merge Sort Duration: ,0.005220
+Shell Sort Duration: ,0.005379
+Intro Sort Duration: ,0.003504
+Tim Sort Duration: ,0.003976
+
+Size 25000:
+Insertion Sort Duration: ,2.039743
+Quick Sort Duration: ,0.012202
+Merge Sort Duration: ,0.013222
+Shell Sort Duration: ,0.015745
+Intro Sort Duration: ,0.009885
+Tim Sort Duration: ,0.010892
+
+Size 50000:
+Insertion Sort Duration: ,8.037202
+Quick Sort Duration: ,0.022730
+Merge Sort Duration: ,0.028660
+Shell Sort Duration: ,0.057904
+Intro Sort Duration: ,0.021114
+Tim Sort Duration: ,0.023640
+
+Size 100000:
+Insertion Sort Duration: ,31.712912
+Quick Sort Duration: ,0.046832
+Merge Sort Duration: ,0.061530
+Shell Sort Duration: ,0.077983
+Intro Sort Duration: ,0.048867
+Tim Sort Duration: ,0.053988
+
