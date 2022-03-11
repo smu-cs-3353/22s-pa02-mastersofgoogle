@@ -29,7 +29,7 @@ class SortingAlgorithms {
         //HeapSort implementation for IntroSort
         void heapify(T[], int, int);
         void heapSort(T[], T*, T*);
-        
+
         //Sorting Algorithms
         void insertionSort(T[], int, int);
         void randomizedQuickSort(T[], int, int);

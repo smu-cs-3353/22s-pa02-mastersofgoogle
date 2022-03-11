@@ -84,4 +84,4 @@ endforeach()
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(22s_pa02_mastersofgoogle
-        main.cpp SortingAlgorithms.h)
+        src/main.cpp src/SortingAlgorithms.h)
