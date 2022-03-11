@@ -43,10 +43,35 @@ To build the sorting algorithms code from the terminal, simply navigate to the s
 3) How do the algorithms perform as the datasets grow very large?
       - Out of all the algorithm's, only Insertion Sort's time increases dramatically as the dataset sizes grow larger (every dataset other than Insertion Sort consistenly performed in less than .1 seconds, while Insertion Sort's longest runtime was about 31 seconds for the randomized datasets of size 100000). Overall, this matches the Big-O of each algorithm, as Insertion Sort's is on average O(n<sup>2</sup>), while the other 5 sorting algorithms are on average O(n lg(n)). Nevertheless, each algorithm's runtime increases as size increases (as one would expect).
 4) Does the performance of the sorting algorithms match published upper bounds?
-      -
+      - Yes, the sorting algorithm's runtimes match their published upper bounds. Insertion Sort, the only algorithm I used with a published upper bound of O(n<sup>2</sup>), was consistently the worst out of all 6 sorting algorithms on randomized or partially randomized datasets; this was expected, as Randomized Quick Sort, Merge Sort, ShellSort, IntroSort, and TimSort all have published upper bounds of O(n lg(n)) (on average). This is reflected in their runtimes, as all were relatively close in value for all datasets and data types.
 5) How does the performance of the algorithms change as duplicates are introduced?
-      -
+      - 
 6) How does the performance of the algorithms change when the input is mostly sorted?
       -
 7) Which algorithm is the best?
-      -
+      - To determine the best overall algorithm, I ranked each algorithm according to their runtime for each input file and averaged their ranking (thus I used 60 data points for each algorithm, which should give me a solid understanding of which is the best). Using this method, I found that TimSort was the fastest sorting algorithm across both types of datasets, followed by IntroSort and QuickSort, respectively. However, I also discovered that, on average, IntroSort was faster than TimSort when sorting strings; nevertheless, overall TimSort is the best sorting algorithm on the 6 sorting algorithms I implemented. The full rankings can be seen below.  
+
+Full Rankings:
+- Integer Datasets  
+      1) TimSort  
+      2) IntroSort  
+      3) ShellSort  
+      4) QuickSort  
+      5) MergeSort*   
+      6) InsertionSort 
+- String Datasets  
+      1) IntroSort  
+      2) TimSort  
+      3) QuickSort  
+      4) ShellSort  
+      5) MergeSort  
+      6) InsertionSort  
+- All Datasets  
+      1) TimSort  
+      2) IntroSort  
+      3) QuickSort  
+      4) ShellSort  
+      5) MergeSort  
+      6) InsertionSort  
+
+* (I ranked MergeSort above InsertionSort for the Integer Datasets even though its average ranking was slightly lower than InsertionSort's. I did this because MergeSort's average ranking was only lower because it was consistently the worst of the O(n lg(n)) sorting algorithms, while InsertionSort is by far the fastest sorting algorithm when the dataset is already completely sorted. The 6 first place finishes for InsertionSort (all when the data was already sorted) allowed it to slightly beat out MergeSort in averge ranking; however, InsertionSort's runtimes for all other arrangements of data was significantly worse than MergeSort's, meaning it's clearly the inferior sorting algorithm.)
